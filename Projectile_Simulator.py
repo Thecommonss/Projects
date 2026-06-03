@@ -46,7 +46,7 @@ def compute_trajectory(v0,angle):
         # 1/2gt**2 - visin(theta) - yi = 0
         # Solve with quadratic equation
         # t = -b +- root(b**2-4ac)/2a
-        # where a = 1/2g, b = -visin(theta), c = -Yi
+        # where a = -(1/2g), b = visin(theta), c = Yi
         # Solve for t
 
         a = -(1/2 * g)
