@@ -1,0 +1,74 @@
+
+//// INTERACTIVE CIRCUIT ////
+https://www.tinkercad.com/things/1u6GcGdQTyH-temperature-monitor-pmw-leds
+
+
+const int ledg = 11;
+const int ledr = 10;
+
+const int buzzer = 9;
+
+const int tempsensor = A0;
+
+void setup () {
+  
+  pinMode(ledg,OUTPUT);
+  pinMode(ledr,OUTPUT);
+  
+  pinMode(buzzer,OUTPUT);
+  
+  Serial.begin(9600);
+  
+}
+
+
+float tempreadings () {
+  int readings = analogRead(tempsensor);
+  float voltage = readings * (5.0/1023.0);
+  return (voltage - 0.5) * 100;
+}
+
+
+void loop() {
+  
+  float temp = tempreadings();
+  
+  int greenbrightness = map(temp,30,10,0,255);
+  int redbrightness = map(temp,30,50,0,255);
+  
+  
+  greenbrightness = constrain(greenbrightness,0,255);
+  redbrightness = constrain(redbrightness,0,255);
+  
+  
+  
+  // 1st CASE temp. readings < 30
+
+  analogWrite(ledg,greenbrightness);
+   
+  // 2nd CASE temp. readings > 30
+
+  analogWrite(ledr,redbrightness);
+    
+    
+    // Buzzer active when temp readings > 40
+    if (temp > 40) {
+    
+      digitalWrite(buzzer,HIGH);
+      
+    }
+    
+    else {
+      
+      digitalWrite(buzzer,LOW);
+      
+    }
+    
+  Serial.print("Temp: ");
+  Serial.print(temp);
+  Serial.print("C | Green: ");
+  Serial.print(greenbrightness);
+  Serial.print(" | Red: ");
+  Serial.println(redbrightness); 
+  delay(1000);
+}
