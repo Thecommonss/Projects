@@ -18,4 +18,9 @@ Password door lock
 
 Temperature monitor with PMW LED
 - Also an arduino project it can monitor measured temperature and output an led signal with intensity as the measured temp. controlled by PMW pin.
-   
+
+
+**CAD**
+
+Screw Driven Scissor Lift
+- A simple Screw Driven Scissor Lift with model parts that can be opened in solidworks. Comes with full assembly file and an PDF Drawing of the assembly along with the bill of materials
